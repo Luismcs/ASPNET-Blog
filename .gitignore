@@ -26,3 +26,7 @@ obj/
 
 # Arquivos de ambiente
 .env
+
+# Configurações do Visual Studio
+.vs/
+*.sln

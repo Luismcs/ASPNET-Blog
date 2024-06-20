@@ -1,0 +1,13 @@
+﻿@page
+@model WebApplication1.Areas.Identity.Pages.Account.RegisterConfirmationModel
+@{
+    ViewData["Title"] = "Register confirmation";
+}
+
+<h1>@ViewData["Title"]</h1>
+<p>Thank you for registering. Please confirm your email by clicking the link we emailed you.</p>
+
+@if (TempData["ConfirmationLink"] != null)
+{
+    <p><a href="@TempData["ConfirmationLink"]">Confirm your account</a></p>
+}

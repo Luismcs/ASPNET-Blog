@@ -1,0 +1,66 @@
+﻿@page
+@model WebApplication1.Areas.Identity.Pages.Account.RegisterModel
+@{
+    ViewData["Title"] = "Register";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<h4>Create a new account.</h4>
+<hr />
+<div class="row">
+    <div class="col-md-6">
+        <section>
+            <form method="post">
+                <h4>@ViewData["ReturnUrl"]</h4>
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="form-group mb-2">
+                    <label asp-for="Input.Email"></label>
+                    <input asp-for="Input.Email" class="form-control" />
+                    <span asp-validation-for="Input.Email" class="text-danger"></span>
+                </div>
+                <div class="form-group mb-2">
+                    <label asp-for="Input.Password"></label>
+                    <input asp-for="Input.Password" class="form-control" />
+                    <span asp-validation-for="Input.Password" class="text-danger"></span>
+                </div>
+                <div class="form-group mb-2">
+                    <label asp-for="Input.ConfirmPassword"></label>
+                    <input asp-for="Input.ConfirmPassword" class="form-control" />
+                    <span asp-validation-for="Input.ConfirmPassword" class="text-danger"></span>
+                </div>
+                <button type="submit" class="createPostButton">Register</button>
+            </form>
+        </section>
+    </div>
+    <div class="col-md-6">
+        <section>
+            <h4>Use another service to log in.</h4>
+            <hr />
+            @if (Model.ExternalLogins?.Count > 0)
+            {
+                <div>
+                    <p>
+                        @foreach (var provider in Model.ExternalLogins)
+                        {
+                            <button type="button" class="btn btn-outline-secondary" onclick="location.href='@Url.Page("./ExternalLogin", new { provider = provider.Name, returnUrl = Model.ReturnUrl })'">
+                                Log in using @provider.DisplayName
+                            </button>
+                        }
+                    </p>
+                </div>
+            }
+            else
+            {
+                <p>
+                    There are no external authentication services configured. See <a href="https://go.microsoft.com/fwlink/?LinkID=532715">this article</a>
+                    for details on setting up this ASP.NET application to support logging in via external services.
+                </p>
+            }
+        </section>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

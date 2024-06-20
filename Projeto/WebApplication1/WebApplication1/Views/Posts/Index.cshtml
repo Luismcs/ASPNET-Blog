@@ -1,0 +1,84 @@
+﻿@model WebApplication1.ViewModels.CombinedViewModelUsersPosts
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Post List</h1>
+
+<p class="mt-4">
+    <a class="createPostButton" asp-action="Create">Create Post</a>
+</p>
+
+@*TEMP DATA*@
+@{
+    if (TempData.Peek("Message") != null)
+    {
+        <div class="alert alert-success" role="alert">
+            @TempData.Peek("Message")
+        </div>
+    }
+}
+
+
+<form asp-controller="Posts" asp-action="Index" method="get">
+    <p>
+        <span class="mx-3">Title:</span> <input type="text" name="searchString" />
+        <span class="mx-3">Month:</span> <input type="number" name="searchMonth" min="1" max="12" />
+        <span class="mx-3">Year:</span> <input type="number" name="searchYear" min="1900" max="@DateTime.Now.Year" />
+        <input class="filterButton mx-3 mb-4" type="submit" value="Filter" />
+    </p>
+</form>
+
+<div class="row justify-content-center">
+
+    @foreach (var post in Model.Posts) // Percorre todos os posts e mostra-os
+    {
+        //Se o post for restrito e o utilizador logado for user então o post não será mostrado
+        @if(post.IsRestricted && User.IsInRole("User"))
+        {
+            continue;
+        }
+
+        <div class="col-md-6">
+            <div class="card mb-4 shadow-sm">
+                @if (!string.IsNullOrEmpty(post.Image))
+                {
+                    <img class="card-img-top" src="@post.Image" alt="Card image cap" style="height: 350px; object-fit: cover;">
+                }
+                else
+                {
+                    <img class="card-img-top" src="~/images/default.jpg" alt="Card image cap" style="height: 200px; object-fit: cover;">
+                }
+                <div class="card-body">
+                    <h5 class="card-title">@post.Title</h5>
+                    <p class="card-text">@post.Content</p>
+                    <div class="d-flex justify-content-between align-items-center">
+
+                        <div class="btn-group">
+                            <a href="@Url.Action("Details", "Posts", new { id = post.Id })" class="btn btn-sm btn-outline-secondary">View</a>
+
+                            @if (User.IsInRole("Admin") || post.UserId == Model.LoggedInUserId)
+                            {
+                                <a href="@Url.Action("Edit", "Posts", new { id = post.Id })" class="btn btn-sm btn-outline-secondary">Edit</a>
+                                <a href="@Url.Action("Delete", "Posts", new { id = post.Id })" class="btn btn-sm btn-outline-secondary">Delete</a>
+                            }
+
+                        </div>
+
+                        @foreach (var user in Model.Users)  // Encontra o UserName do utilizador que fez o post
+                        {
+                            if (user.Id == post.UserId)
+                            {
+                                <small class="text-muted">@user.UserName</small>
+                            }
+                        }
+
+                        <small class="text-muted">@post.CreatedAt.ToString("g")</small>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+</div>

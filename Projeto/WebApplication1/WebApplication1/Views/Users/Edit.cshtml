@@ -1,0 +1,62 @@
+﻿@model WebApplication1.ViewModels.EditUserViewModel
+
+@{
+    ViewData["Title"] = "Edit User";
+}
+
+<h1>Edit User</h1>
+
+<h4>User</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div class="form-group mb-3">
+                <label asp-for="Email" class="control-label"></label>
+                <input asp-for="Email" class="form-control" />
+                <span asp-validation-for="Email" class="text-danger"></span>
+            </div>
+            <div class="form-group mb-3">
+                <label asp-for="UserName" class="control-label"></label>
+                <input asp-for="UserName" class="form-control" />
+                <span asp-validation-for="UserName" class="text-danger"></span>
+            </div>
+            <div class="form-group mb-3">
+                <label asp-for="PhoneNumber" class="control-label"></label>
+                <input asp-for="PhoneNumber" class="form-control" />
+                <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+            </div>
+           
+            <!-- Se o utilizador logado for admin, pode editar a role do utilizador -->
+            @if (User.IsInRole("Admin"))
+            {
+                <div class="form-group">
+                    <label>Roles</label><br />
+                    @foreach (var role in Model.Roles)
+                    {
+                        if(Model.UserRole == role.Name){
+                            <label>@role.Name</label>
+                            <input type="radio" checked value="@role.Name" name="roleSelected" /> <br />
+                        }
+                        else
+                        {
+                            <label>@role.Name</label>
+                            <input type="radio" value="@role.Name" name="roleSelected" /> <br />
+                        }
+                    }
+                </div>
+            }                    
+
+            <input type="hidden" asp-for="LoggedInUserId" />
+
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary editUserButton" />
+            </div>
+
+        </form>
+    </div>
+</div>
+
+<div>
+    <a class="btn btn-primary backToListButton" asp-action="Index">Back to List</a>
+</div>

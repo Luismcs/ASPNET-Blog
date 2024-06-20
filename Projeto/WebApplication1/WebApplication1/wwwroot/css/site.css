@@ -1,0 +1,263 @@
+html {
+  font-size: 14px;
+}
+
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
+  box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
+}
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+  margin-bottom: 60px;
+}
+
+.logoImage{
+    width: 100px;
+    border-radius: 50%;
+    margin-left: 30px;
+}
+
+.navbarGeral{
+    background-color: #101c23;
+}
+
+/* HOME PAGE */
+.carouselImage {
+    max-height: 500px;
+    width: 100%;
+    object-fit: cover;
+}
+
+.seeMoreButton{
+    background-color: #101c23;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    margin-top: 20px;
+    text-decoration: none;
+}
+
+.seeMoreButton:hover {
+    background-color: white;
+    color: #101c23;
+    border: 1px solid #101c23;
+}
+
+.seeMoreButton:active {
+    background-color: white;
+    color: #101c23;
+}
+
+.seeMoreButton:focus {
+    background-color: white;
+    color: #101c23;
+}
+
+.seeMoreButton{
+    transition: background-color 0.3s;
+}
+
+
+
+/*LAYOUT NAVBAR*/
+/*.navGeral {
+    background-color: #101c23;
+}*/
+/* REGISTER PAGE */
+.registerButton, .loginButton, {
+    background-color: #101c23;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    margin-top: 20px;
+}
+
+.registerButton:hover, .loginButton:hover {
+    background-color: #FFA07A;
+}
+
+.registerButton:active, .loginButton:active {
+    background-color: #FFA07A;
+}
+
+.registerButton:focus, .loginButton:focus {
+    background-color: #FFA07A;
+}
+
+
+/*Indexes*/
+
+/* CREATE POST BUTTON */
+
+.createPostButton {
+    background-color: #101c23;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    margin-top: 20px;
+    text-decoration: none;
+    transition: background-color 0.3s;
+}
+
+.createPostButton:hover {
+    background-color: white;
+    color: #101c23;
+    border: 1px solid #101c23;
+}
+
+.createPostButton:active {
+    background-color: white;
+    color: #101c23;
+}
+
+.createPostButton:focus {
+    background-color: white;
+    color: #101c23;
+}
+
+.filterButton {
+    background-color: #101c23;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 4px 8px;
+    margin-top: 20px;
+}
+
+.filterButton:hover {
+    background-color: white;
+    color: #101c23;
+    border: 1px solid #101c23;
+}
+
+.filterButton:active {
+    background-color: #FFA07A;
+}
+
+.filterButton:focus {
+    background-color: #FFA07A;
+}
+
+.filterButton{
+    transition: background-color 0.3s;
+}
+
+.table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.table th,
+.table td {
+    padding: 8px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+.table th {
+    background-color: #f2f2f2;
+}
+
+.tableRow:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+.actionButtonDelete{
+    background-color: salmon;
+}
+
+.actionButtonDetails{
+    background-color:lightskyblue
+}
+
+.actionButtonEdit{
+    background-color:lightgreen
+}
+
+.actionButtonEdit,
+.actionButtonDetails,
+.actionButtonDelete {
+    display: inline-block;
+    padding: 6px 12px;
+    margin: 3px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    text-decoration: none;
+    color: #333;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.actionButtonEdit:hover {
+    background-color: #3aed3a;
+    text-decoration: none;
+    color: #333; 
+}
+
+.actionButtonDetails:hover {
+    background-color: dodgerblue;
+    text-decoration: none;
+    color: #333; 
+}
+
+.actionButtonDelete:hover {
+    background-color: #e0142f;
+    text-decoration: none;
+    color: #333; 
+}
+
+.actionButtonEdit,
+.actionButtonDetails,
+.actionButtonDelete {
+    transition: background-color 0.3s;
+}
+
+.restrictionNote{
+    color: grey;
+    font-size: 15px;
+}
+
+/*EDIT USER PAGE*/
+
+.editUserButton {
+    background-color: #101c23;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 8px 12px;
+    margin-top: 20px;
+}
+
+.editUserButton:hover {
+    background-color: white;
+    color: #101c23;
+    border: 1px solid #101c23;
+}
+
+.backToListButton {
+    background-color: #101c23;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 8px 12px;
+    margin-top: 20px;
+}
+
+.backToListButton:hover {
+    background-color: white;
+    color: #101c23;
+    border: 1px solid #101c23;
+}

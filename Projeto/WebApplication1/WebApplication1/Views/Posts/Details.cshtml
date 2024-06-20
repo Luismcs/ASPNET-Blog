@@ -1,0 +1,145 @@
+﻿@model WebApplication1.ViewModels.CombinedViewModelUsersPosts
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+
+@*TEMP DATA*@
+@{
+    if (TempData.Peek("Message") != null)
+    {
+        <div class="alert alert-success" role="alert">
+            @TempData.Peek("Message")
+        </div>
+    }
+}
+
+<div>
+
+    @foreach (var post in Model.Posts)
+    {
+        <div class="row mt-5">
+            <div class="col-md-2">
+            </div>
+            <div class="col-md-8">
+                <h4>@post.Title</h4> 
+            </div>
+            <div class="col-md-2">
+            </div>
+         </div>
+
+        <form>
+
+            <div class="row mb-3">
+                <div class="col-md-12 d-flex justify-content-center">
+                    @if (!string.IsNullOrEmpty(post.Image))
+                    {
+                        <img src="@post.Image" id="PostImage" alt="@post.Title" style="max-width: 100%; height: 480px;" />
+                    }
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-2">
+
+                </div>
+                <div class="col-md-8">
+                    <div class="form-group mb-3">
+                        <label for="exampleContent">Content:</label>
+                        <textarea class="form-control" id="exampleContent" rows="5" disabled>@post.Content</textarea>
+                    </div>
+                </div>
+                <div class="col-md-2">
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-2">
+                </div>
+                <div class="col-md-8">
+                    <div class="form-group mb-3">
+                        <label for="exampleAuthor">Author:</label>
+                        <input type="text" class="form-control" id="exampleAuthor" aria-describedby="emailHelp" value=@Model.Users.FirstOrDefault(u => u.Id == post.UserId)?.UserName disabled>
+                    </div>
+                </div>
+                <div class="col-md-2">
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-2">
+                </div>
+                <div class="col-md-8">
+                    <div class="form-group mb-3">
+                        <label for="exampleCreatedAt">Created At:</label>
+                        <input type="text" class="form-control" id="exampleCreatedAt" aria-describedby="emailHelp" value=@post.CreatedAt.ToString("g") disabled>
+                    </div>
+                </div>
+                <div class="col-md-2">
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-2">
+                </div>
+                <div class="col-md-8">
+                    <div class="form-group mb-3">
+                        @if(Model.AverageRating >= 1 && Model.AverageRating < 2)
+                        {
+                            <h5>Post Rating: <span style="color: red">@Model.AverageRating</span> </h5>
+                        }
+                        else if(Model.AverageRating >= 2 && Model.AverageRating < 3)
+                        {
+                            <h5>Post Rating: <span style="color: yellow">@Model.AverageRating</span> </h5>
+                        }
+                        else if (Model.AverageRating >= 3 && Model.AverageRating < 4)
+                        {
+                            <h5>Post Rating: <span style="color: orangered">@Model.AverageRating</span> </h5>
+                        }
+                        else
+                        {
+                            <h5>Post Rating: <span style="color: forestgreen">@Model.AverageRating</span> </h5>
+                        }
+                    </div>
+                </div>
+                <div class="col-md-2">
+                </div>
+            </div>
+
+            @if (Model.UserRating != 0)
+            {
+                <div class="row">
+                    <div class="col-md-2">
+                    </div>
+                    <div class="col-md-8">
+                        <div class="row">
+                            <h5>Your last Rating: @Model.UserRating</h5>
+                        </div>
+                    </div>
+
+                    <div class="col-md-2">
+                    </div>
+                </div>
+                    
+
+            }
+           
+
+        </form>
+
+        <h4>Add a rating</h4>
+        <form asp-controller="Ratings" asp-action="Create" method="post">
+            <input type="hidden" name="postId" value="@Model.Posts.First().Id" />
+            <div class="form-group">
+                <label for="ratingValue">Rating (1-5):</label>
+                <input type="number" name="ratingValue" min="1" max="5" class="form-control" required />
+            </div>
+            <button type="submit" class="createPostButton">Submit</button>
+        </form>
+   
+    }
+</div>
+<div class="mt-5">
+    <a class="createPostButton" asp-action="Index">Back to List</a>
+</div>
