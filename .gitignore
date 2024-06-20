@@ -1,0 +1,28 @@
+ 
+# Arquivos de configuração sensíveis
+appsettings.json
+appsettings.Development.json
+appsettings.Production.json
+secrets.json
+
+# Chaves e certificados
+*.pfx
+*.pem
+
+# Pastas de build
+bin/
+obj/
+
+# Pastas de IDEs
+.vscode/
+.idea/
+.vs/
+
+# Arquivos de usuário
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# Arquivos de ambiente
+.env
