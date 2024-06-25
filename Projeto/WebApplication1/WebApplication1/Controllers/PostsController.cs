@@ -134,7 +134,7 @@ namespace WebApplication1.Controllers
                     averageRating += rating.RatingValue;
                     totalRatings++;
                 }
-                if(rating.UserId == _userManager.GetUserId(User))
+                if(rating.PostId == id && rating.UserId == _userManager.GetUserId(User))
                 {
                     userRating = rating.RatingValue;
                 }

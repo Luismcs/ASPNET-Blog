@@ -97,6 +97,10 @@
                         {
                             <h5>Post Rating: <span style="color: orangered">@Model.AverageRating</span> </h5>
                         }
+                        else if (Model.AverageRating == 0)
+                        {
+                            <h5>Post Rating: <span style="color: red">@Model.AverageRating</span> </h5>
+                        }
                         else
                         {
                             <h5>Post Rating: <span style="color: forestgreen">@Model.AverageRating</span> </h5>
